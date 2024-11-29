@@ -5,8 +5,8 @@ using Il2CppAssets.Scripts.Models.Rounds;
 using Il2CppAssets.Scripts.Simulation.Track.RoundManagers;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 
-namespace BloonariusMasteryMode.Patches;
-using static BloonariusMasteryModeMod;
+namespace ImprovedMasteryMode.Patches;
+using static ImprovedMasteryModeMod;
 
 internal static class RoundEmissionsHooks {
     private static Il2CppReferenceArray<BloonEmissionModel> PromoteEmissions(Il2CppReferenceArray<BloonEmissionModel> emissions){

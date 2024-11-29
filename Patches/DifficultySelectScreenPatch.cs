@@ -14,8 +14,8 @@ using MelonLoader.ICSharpCode.SharpZipLib.Core;
 using Il2CppAssets.Scripts.Models.Bloons;
 using MelonLoader;
 
-namespace BloonariusMasteryMode.Patches;
-using static BloonariusMasteryModeMod;
+namespace ImprovedMasteryMode.Patches;
+using static ImprovedMasteryModeMod;
 
 internal static class DifficultySelectScreenPatch {
     private static readonly string[] ShowOnMenus =
@@ -44,11 +44,11 @@ internal static class DifficultySelectScreenPatch {
 
             image.type = Image.Type.Sliced;
             if (IsMasteryModeEnabled){
-                image.SetSprite(ModContent.GetSprite<BloonariusMasteryModeMod>("MasteryModeButton"));
+                image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("MasteryModeButton"));
                 
                 //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(masteryModeBackgroundColor, 2, false, true, true);
             } else if (IsChaosModeEnabled){
-                image.SetSprite(ModContent.GetSprite<BloonariusMasteryModeMod>("ChaosModeButton"));
+                image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("ChaosModeButton"));
                 //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
             } else {
                 image.SetSprite(VanillaSprites.WoodenRoundButton);
@@ -61,7 +61,7 @@ internal static class DifficultySelectScreenPatch {
 
                 
                 if (IsMasteryModeEnabled){
-                    button.image.SetSprite(ModContent.GetSprite<BloonariusMasteryModeMod>("ChaosModeButton"));
+                    button.image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("ChaosModeButton"));
                     IsMasteryModeEnabled = !IsMasteryModeEnabled;
                     IsChaosModeEnabled = !IsChaosModeEnabled;
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(masteryModeBackgroundColor, 2, false, true, true);
@@ -70,12 +70,11 @@ internal static class DifficultySelectScreenPatch {
                     IsChaosModeEnabled = !IsChaosModeEnabled;
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
                 } else {
-                    button.image.SetSprite(ModContent.GetSprite<BloonariusMasteryModeMod>("MasteryModeButton"));
+                    button.image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("MasteryModeButton"));
                     IsMasteryModeEnabled = !IsMasteryModeEnabled;
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
                 }
 
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"{IsMasteryModeEnabled} + {IsChaosModeEnabled}");
 
             });
 

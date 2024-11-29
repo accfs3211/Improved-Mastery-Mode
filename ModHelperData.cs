@@ -1,12 +1,11 @@
-namespace BloonariusMasteryMode;
+namespace ImprovedMasteryMode;
 
 public static class ModHelperData
 {
-    public const string Version = "1.2.1";
-    public const string Name = "Bloonarius Mastery Mode";
-    public const string Description = "Upgrades bloon ranks, replacing BADs and Fortified BADs with 3x Speed Tier 3 Bloonarius and Elite Bloonarius. Also starts reducing cash per pop 10 rounds early.";
-    public const string WorksOnVersion = "34";
-    public const string RepoOwner = "Ross-TheBoss";
-    public const string RepoName = "bloonarius-mastery-mode";
-    public const string Author = "Timotheeee and Ross-TheBoss";
+    public const string Version = "1.0";
+    public const string Name = "Improved Master Mode";
+    public const string Description = "Upgrades bloon ranks, replacing BADs and Fortified BADs with bosses";
+    public const string RepoOwner = "accfs3211";
+    public const string RepoName = "Improved-Mastery-Mode";
+    public const string Author = "accfss3211 (Forked from Timotheeee's Bloonarius Mastery Mode)";
 }

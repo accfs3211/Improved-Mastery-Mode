@@ -4,8 +4,8 @@ using HarmonyLib;
 using Il2CppAssets.Scripts.Simulation;
 using MelonLoader;
 
-namespace BloonariusMasteryMode.Patches;
-using static BloonariusMasteryModeMod;
+namespace ImprovedMasteryMode.Patches;
+using static ImprovedMasteryModeMod;
 
 internal static class SimulationPatches {
 
@@ -38,7 +38,7 @@ internal static class SimulationPatches {
         private static void Prefix(int spawnedRound){
             #if DEBUG
             if (IsMasteryModeEnabled){
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Round {spawnedRound+1} (Mastery Mode) started!");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Round {spawnedRound+1} (Mastery Mode) started!");
             }
             #endif
             currentRound = spawnedRound+1;
@@ -67,7 +67,7 @@ internal static class SimulationPatches {
         [HarmonyPrefix]
         private static void Prefix(int round, int highestCompletedRound){
             #if DEBUG
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Round {round+1} = ${totalRoundCash}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Round {round+1} = ${totalRoundCash}");
             #endif
             totalRoundCash = 0.0;
         }

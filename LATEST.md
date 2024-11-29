@@ -1,1 +1,0 @@
-- Bug fix: round 1 now gives cash in mastery mode.

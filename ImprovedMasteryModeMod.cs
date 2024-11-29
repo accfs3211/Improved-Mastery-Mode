@@ -12,20 +12,17 @@ using UnityEngine.InputSystem.Utilities;
 using BTD_Mod_Helper.Api.ModOptions;
 
 using System.Collections.Immutable;
-using BloonariusMasteryMode.Patches;
+using ImprovedMasteryMode.Patches;
 using System;
 using UnityEngine;
-using System.Linq;
 
-[assembly: MelonInfo(typeof(BloonariusMasteryMode.BloonariusMasteryModeMod), BloonariusMasteryMode.ModHelperData.Name, BloonariusMasteryMode.ModHelperData.Version, BloonariusMasteryMode.ModHelperData.RepoOwner)]
+
+[assembly: MelonInfo(typeof(ImprovedMasteryMode.ImprovedMasteryModeMod), ImprovedMasteryMode.ModHelperData.Name, ImprovedMasteryMode.ModHelperData.Version, ImprovedMasteryMode.ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
-namespace BloonariusMasteryMode;
+namespace ImprovedMasteryMode;
 
-public class BloonariusMasteryModeMod : BloonsTD6Mod
+public class ImprovedMasteryModeMod : BloonsTD6Mod
 {
-    private static readonly ModSettingBool LimitMinions = new(false) {
-        displayName = "Limit minion spawning"
-    };
 
     public static bool IsMasteryModeEnabled = false;
 
@@ -245,12 +242,7 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         { "BadFortified", "ZomgFortified" },
     };
 
-    public override void OnUpdate(){
-        #if DEBUG
-        CashCalculator.OnUpdate();
-        #endif
-        //DifficultySelectScreenPatch.OnUpdate();
-    }
+   
 
     public static int currentRound = 1;
     public override void OnBloonCreated(Bloon bloon)
@@ -308,51 +300,51 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
             int defaultHealth;
 
             if (bloon.bloonModel.id == ModContent.BloonID<Bloonarius>()){
-                defaultSpeed = (float) BloonariusSpeed.GetValue();
+                defaultSpeed = (float)(double) BloonariusSpeed.GetValue();
                 defaultHealth = Bloonarius.HEALTH;
             } 
             else if (bloon.bloonModel.id == ModContent.BloonID<BloonariusFortified>()){
-                defaultSpeed = (float) BloonariusSpeed.GetValue();
+                defaultSpeed = (float)(double) BloonariusSpeed.GetValue();
                 defaultHealth = BloonariusFortified.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<Lych>())
             {
-                defaultSpeed = (float) LychSpeed.GetValue();
+                defaultSpeed = (float)(double) LychSpeed.GetValue();
                 defaultHealth = Lych.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<LychFortified>())
             {
-                defaultSpeed = (float) LychSpeed.GetValue();
+                defaultSpeed = (float)(double) LychSpeed.GetValue();
                 defaultHealth = LychFortified.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<Dreadbloon>())
             {
-                defaultSpeed = (float) DreadbloonSpeed.GetValue();
+                defaultSpeed = (float)(double) DreadbloonSpeed.GetValue();
                 defaultHealth = Dreadbloon.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<DreadbloonFortified>())
             {
-                defaultSpeed = (float) DreadbloonSpeed.GetValue();
+                defaultSpeed = (float)(double) DreadbloonSpeed.GetValue();
                 defaultHealth = DreadbloonFortified.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<Vortex>())
             {
-                defaultSpeed = (float) VortexSpeed.GetValue();
+                defaultSpeed = (float)(double) VortexSpeed.GetValue();
                 defaultHealth = Vortex.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<VortexFortified>())
             {
-                defaultSpeed = (float) VortexSpeed.GetValue();
+                defaultSpeed = (float)(double) VortexSpeed.GetValue();
                 defaultHealth = VortexFortified.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<Phayze>())
             {
-                defaultSpeed = (float) PhayzeSpeed.GetValue();
+                defaultSpeed = (float)(double) PhayzeSpeed.GetValue();
                 defaultHealth = Phayze.HEALTH;
             }
             else if (bloon.bloonModel.id == ModContent.BloonID<PhayzeFortified>())
             {
-                defaultSpeed = (float) PhayzeSpeed.GetValue();
+                defaultSpeed = (float)(double) PhayzeSpeed.GetValue();
                 defaultHealth = PhayzeFortified.HEALTH;
             }
             else {
@@ -375,8 +367,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
             #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Bloonarius Default Speed: {bloonModel.Speed} -> {(float)(double) BloonariusSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Bloonarius Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Bloonarius Default Speed: {bloonModel.Speed} -> {(float)(double) BloonariusSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Bloonarius Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
             #endif
             bloonModel.leakDamage = (float) HEALTH;
             bloonModel.Speed = (float)(double) BloonariusSpeed.GetValue(); 
@@ -396,8 +388,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Lych Default Speed: {bloonModel.Speed} -> {(float)(double) LychSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Lych Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Lych Default Speed: {bloonModel.Speed} -> {(float)(double) LychSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Lych Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) LychSpeed.GetValue(); ; 
@@ -418,8 +410,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Dreadbloon Default Speed: {bloonModel.Speed} -> {(float)(double) DreadbloonSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Dreadbloon Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Dreadbloon Default Speed: {bloonModel.Speed} -> {(float)(double) DreadbloonSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Dreadbloon Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) DreadbloonSpeed.GetValue(); 
@@ -440,8 +432,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Vortex Default Speed: {bloonModel.Speed} -> {(float)(double) VortexSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Votex Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Vortex Default Speed: {bloonModel.Speed} -> {(float)(double) VortexSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Votex Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) VortexSpeed.GetValue(); 
@@ -462,8 +454,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Phayze Default Speed: {bloonModel.Speed} -> {(float)(double) PhayzeSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Phayze Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Phayze Default Speed: {bloonModel.Speed} -> {(float)(double) PhayzeSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Phayze Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) PhayzeSpeed.GetValue();
@@ -484,8 +476,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
             {
 #if DEBUG
                 // Default Speed: 1.25x. BAD Speed: 4.5x
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Bloonarius Default Speed: {bloonModel.Speed} -> {(float)(double) BloonariusSpeed.GetValue()}");
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Bloonarius Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Bloonarius Default Speed: {bloonModel.Speed} -> {(float)(double) BloonariusSpeed.GetValue()}");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Bloonarius Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
                 bloonModel.leakDamage = (float)HEALTH;
                 bloonModel.Speed = (float)(double) BloonariusSpeed.GetValue(); 
@@ -494,17 +486,6 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
                 bloonModel.dontShowInSandbox = true;
                 bloonModel.dontShowInSandboxOnRelease = true;
 
-                if ((bool)LimitMinions.GetValue())
-                {
-                    // Don't Spawn Ceramic Bloons
-                    foreach (SpawnBloonsActionModel behaviour in bloonModel.GetBehaviors<SpawnBloonsActionModel>())
-                    {
-                        if (behaviour.bloonType == "Ceramic")
-                        {
-                            behaviour.spawnCount = 0;
-                        }
-                    }
-                }
             }
         }
     public class LychFortified : ModBloon
@@ -518,8 +499,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
             {
 #if DEBUG
                 // Default Speed: 1.25x. BAD Speed: 4.5x
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Lych Default Speed: {bloonModel.Speed} -> {(float)(double) LychSpeed.GetValue()}");
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Lych Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Lych Default Speed: {bloonModel.Speed} -> {(float)(double) LychSpeed.GetValue()}");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Lych Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
                 bloonModel.leakDamage = (float)HEALTH;
                 bloonModel.Speed = (float)(double) LychSpeed.GetValue(); 
@@ -542,8 +523,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Dreadbloon Default Speed: {bloonModel.Speed} -> {(float)(double) DreadbloonSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Dreadbloon Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Dreadbloon Default Speed: {bloonModel.Speed} -> {(float)(double) DreadbloonSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Dreadbloon Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) DreadbloonSpeed.GetValue();
@@ -566,8 +547,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Vortex Default Speed: {bloonModel.Speed} -> {(float)(double) VortexSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Elite Vortex Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Vortex Default Speed: {bloonModel.Speed} -> {(float)(double) VortexSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Elite Vortex Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double) VortexSpeed.GetValue(); 
@@ -590,8 +571,8 @@ public class BloonariusMasteryModeMod : BloonsTD6Mod
         {
 #if DEBUG
             // Default Speed: 1.25x. BAD Speed: 4.5x
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Phayze Default Speed: {bloonModel.Speed} -> {(float)(double)PhayzeSpeed.GetValue()}");
-            Melon<BloonariusMasteryModeMod>.Logger.Msg($"Phayze Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Phayze Default Speed: {bloonModel.Speed} -> {(float)(double)PhayzeSpeed.GetValue()}");
+            Melon<ImprovedMasteryModeMod>.Logger.Msg($"Phayze Default Leak Damage: {bloonModel.leakDamage} -> {HEALTH}");
 #endif
             bloonModel.leakDamage = (float)HEALTH;
             bloonModel.Speed = (float)(double)PhayzeSpeed.GetValue();

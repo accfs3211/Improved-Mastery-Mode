@@ -1,10 +1,10 @@
-<a href="https://github.com/ross-theboss/bloonarius-mastery-mode/releases/latest/download/BloonariusMasteryMode.dll">
-    <img align="left" alt="Icon" height="90" src="Icon.png">
-    <img align="right" alt="Download" height="75" src="https://raw.githubusercontent.com/gurrenm3/BTD-Mod-Helper/master/BloonsTD6%20Mod%20Helper/Resources/DownloadBtn.png">
+<a href="https://github.com/accfs3211/Improved-Mastery-Model">
+    <img align="left" alt="Icon" height="90" src="MasteryModeButton.png">
+    <img align="right" alt="Download" height="75" src="ChaosModeButton">
 </a>
 
-<h1 align="center">Bloonarius Mastery Mode</h1>
-<p align="center">Based upon <a href="https://github.com/Timotheeee">Timotheeee</a>'s <a href="https://github.com/Timotheeee/btd6_mods/tree/master/mastery_mode_v2">mastery_mode_v2</a> mod.</p>
+<h1 align="center">Improved Mastery Mode</h1>
+<p align="center">Based upon Ross-TheBoss's <a href="https://github.com/Ross-TheBoss/bloonarius-mastery-mode</a> Bloonarius Mastery Mod.</p>
 
 Upgrades bloon ranks, replacing BADs and Fortified BADs with Tier 3 Bosses and Elite Bosses (Bloonarius, Lych, Dreadbloon, Vortex, Phayze). 
 

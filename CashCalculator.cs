@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using ImprovedMasteryMode;
 using BTD_Mod_Helper.Api;
 using Il2CppAssets.Scripts.Data;
 using Il2CppAssets.Scripts.Models;
@@ -7,9 +8,9 @@ using Il2CppAssets.Scripts.Models.Rounds;
 using Il2CppAssets.Scripts.Unity;
 using MelonLoader;
 
-namespace BloonariusMasteryMode;
-using static BloonariusMasteryModeMod;
-using static BloonariusMasteryMode.Patches.SimulationPatches;
+namespace ImprovedMasteryMode;
+using static ImprovedMasteryModeMod;
+using static ImprovedMasteryMode.Patches.SimulationPatches;
 
 internal static class CashCalculator {
     private static readonly Dictionary<string, (int normal, int round80)> cashMap = new()
@@ -116,7 +117,7 @@ internal static class CashCalculator {
         if ((gameModel != null) && (!outputtedRoundSet)){
             RoundSetModel? roundSet =  GameData.Instance?.RoundSetByName("DefaultRoundSet");
             if (roundSet != null){
-                Melon<BloonariusMasteryModeMod>.Logger.Msg($"Roundset: {roundSet.name}");
+                Melon<ImprovedMasteryModeMod>.Logger.Msg($"Roundset: {roundSet.name}");
                 int cumulativeCash = 650;
                 for (int index = 0; index < roundSet.rounds.Length; index++){
                     RoundModel round = roundSet.rounds.ElementAt(index);
@@ -127,7 +128,7 @@ internal static class CashCalculator {
                     int roundCash = (int) ((poppingCash + cashReward) * IncomeMultiplier(index+1));
                     cumulativeCash += roundCash;
 
-                    Melon<BloonariusMasteryModeMod>.Logger.Msg($"{index+1}: ${roundCash} ${cumulativeCash}");
+                    Melon<ImprovedMasteryModeMod>.Logger.Msg($"{index+1}: ${roundCash} ${cumulativeCash}");
                 }
                 outputtedRoundSet = true;
             }
