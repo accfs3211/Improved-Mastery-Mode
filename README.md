@@ -1,6 +1,6 @@
 <a href="https://github.com/accfs3211/Improved-Mastery-Model">
-    <img align="left" alt="Icon" height="90" src="MasteryModeButton.png">
-    <img align="right" alt="Icon1" height="90" src="ChaosModeButton.png">
+    <img align="left" alt="Icon" height="75" width="75" src="MasteryModeButton.png">
+    <img align="right" alt="Icon1" height="75" width="75" src="ChaosModeButton.png">
 </a>
 
 <h1 align="center">Improved Mastery Mode</h1>
