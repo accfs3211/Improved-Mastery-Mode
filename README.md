@@ -1,11 +1,10 @@
 <a href="https://github.com/accfs3211/Improved-Mastery-Model">
     <img align="left" alt="Icon" height="90" src="MasteryModeButton.png">
-    <img align="right" alt="Download" height="75" src="ChaosModeButton">
+    <img align="right" alt="Download" height="75" src="ChaosModeButton.png">
 </a>
 
 <h1 align="center">Improved Mastery Mode</h1>
-<p align="center">Based upon Ross-TheBoss's <a href="https://github.com/Ross-TheBoss/bloonarius-mastery-mode> Bloonarius Mastery Mod</a>. </p>
-
+<p align="center">Based upon Ross-TheBoss's <a href="https://github.com/Ross-TheBoss/bloonarius-mastery-mode"> Bloonarius Mastery Mod</a>.</p>
 
 <h1>Mod Features</h1>
 
