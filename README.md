@@ -6,6 +6,7 @@
 <h1 align="center">Improved Mastery Mode</h1>
 <p align="center">Based upon Ross-TheBoss's <a href="https://github.com/Ross-TheBoss/bloonarius-mastery-mode</a> Bloonarius Mastery Mod.</p>
 
+<p>
 Upgrades bloon ranks, replacing BADs and Fortified BADs with Tier 3 Bosses and Elite Bosses (Bloonarius, Lych, Dreadbloon, Vortex, Phayze). 
 
 In order to change the game mode to mastery mode, click the Mastery Mode button in the Difficulty Selection screen.
@@ -29,5 +30,6 @@ Mod Settings:
  - (Boss Toggles), WIP, will allow individual bosses to be toggled off
 
 Cash Per Pop is reduced early (default 10) because of the amount of extra pops from bloon promotion
+</p>
 
 [![Requires BTD6 Mod Helper](https://raw.githubusercontent.com/gurrenm3/BTD-Mod-Helper/master/banner.png)](https://github.com/gurrenm3/BTD-Mod-Helper#readme)
