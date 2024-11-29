@@ -36,9 +36,14 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
 
     public static readonly ModSettingInt PromotionTimes = new(1)
     {
-        displayName = "Number of Times a Bloon is promoted, also affects demotion in Chaos Mode",
+        displayName = "Promotion Times",
         min = 0,
         max = 10
+    };
+
+    public static readonly ModSettingBool BossProgression = new(false)
+    {
+        displayName = "Change how boss promotion works. Allows bosses to be promoted multiple times if true",
     };
 
     public static readonly ModSettingDouble BloonariusSpeed = new(2.0f)
@@ -75,6 +80,7 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
         min = .01,
         max = 20
     };
+
     private static readonly Dictionary<string, string> promotionMap = new()
     {
         { "Red", "Blue" },
