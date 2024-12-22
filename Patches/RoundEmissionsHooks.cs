@@ -25,6 +25,7 @@ internal static class RoundEmissionsHooks {
                 emissionModel => {
                     BloonEmissionModel promotedEmissionModel = emissionModel.Duplicate();
                     promotedEmissionModel.bloon = ChaosPromoteBloon(emissionModel.bloon);
+                    
                     return promotedEmissionModel;
                 }
             ).ToIl2CppReferenceArray();

@@ -1,6 +1,5 @@
 <a href="https://github.com/accfs3211/Improved-Mastery-Model">
-    <img align="left" alt="Icon" height="75" width="75" src="MasteryModeButton.png">
-    <img align="right" alt="Icon1" height="75" width="75" src="ChaosModeButton.png">
+    
 </a>
 
 <h1 align="center">Improved Mastery Mode</h1>
@@ -36,6 +35,7 @@
 <ul>
   <li><strong>Rounds early that cash per pop is reduced:</strong> Self-explanatory.</li>
   <li><strong>Promotion Times:</strong> As explained above.</li>
+  <li><strong>Reduce Bloonariusv (WIP)</strong> Lowers the chance of Bloonarius spawning due to lag concerns</li>
   <li><strong>Boss Progression (WIP):</strong> Changes BAD promotions to the tier 1 of the boss variant, allowing multiple Promotion Times to promote through the tiers.</li>
   <li><strong>Boss Speed:</strong> Sets the base speed of the bosses when they spawn in, affected by freeplay rules.</li>
   <li><strong>Boss Toggles (WIP):</strong> Allows individual bosses to be toggled off.</li>

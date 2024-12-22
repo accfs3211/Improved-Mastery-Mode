@@ -23,6 +23,7 @@ namespace ImprovedMasteryMode;
 
 public class ImprovedMasteryModeMod : BloonsTD6Mod
 {
+    static System.Random coin = new System.Random();
 
     public static bool IsMasteryModeEnabled = false;
 
@@ -44,6 +45,27 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
     public static readonly ModSettingBool BossProgression = new(false)
     {
         displayName = "Change how boss promotion works. Allows bosses to be promoted multiple times if true",
+    };
+
+    public static readonly ModSettingBool SpawnBloonarius = new(true)
+    {
+        displayName = "Change whether or not BADs can be upgraded to Bloonarius",
+    };
+    public static readonly ModSettingBool SpawnLych = new(true)
+    {
+        displayName = "Change whether or not BADs can be upgraded to Lych",
+    };
+    public static readonly ModSettingBool SpawnDreadbloon = new(true)
+    {
+        displayName = "Change whether or not BADs can be upgraded to Dreadbloon",
+    };
+    public static readonly ModSettingBool SpawnVortex = new(true)
+    {
+        displayName = "Change whether or not BADs can be upgraded to Vortex",
+    };
+    public static readonly ModSettingBool SpawnPhayze = new(true)
+    {
+        displayName = "Change whether or not BADs can be upgraded to Phayze",
     };
 
     public static readonly ModSettingDouble BloonariusSpeed = new(2.0f)
@@ -228,7 +250,7 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
         { "CeramicRegrow", "RainbowRegrow" },
         { "CeramicRegrowCamo", "RainbowRegrowCamo" },
         { "CeramicFortified", "Ceramic" },
-        { "CeramicFortifiedCamo", "CeramidCamo" },
+        { "CeramicFortifiedCamo", "CeramicCamo" },
         { "CeramicRegrowFortified", "CeramicRegrow" },
         { "CeramicRegrowFortifiedCamo", "CeramicRegrowCamo" },
         //
@@ -381,7 +403,9 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
             bloonModel.GetBehavior<DistributeCashModel>().cash = 42000f;
             bloonModel.isBoss = false;
 
+
         }
+
     }
     public class Lych : ModBloon
     {
@@ -601,38 +625,46 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
             temp = promotionMap.GetValueOrDefault(temp, temp);
         }
 
+        //most bloons aren't BADs, returning early saves expensive boss computation
+        if (temp != "Boss3" && temp != "BossElite3")
+        {
+            return temp;
+        }
+
         // uses coin to determine whether lych or bloonarius is sent out
-        System.Random coin = new System.Random();
         string boss3, bossElite3;
 
-        int coinToss = coin.Next(0, 5);
-        
 
-        if (coinToss == 0)
+
+        //Uses an array and random to manage randomly upgrading to different bosses and allowing the user to choose which boss can be upgraded to 
+        List<List<string>> bossesActive = new List<List<string>>();
+
+        if ((bool) SpawnBloonarius.GetValue())
         {
-            boss3 = ModContent.BloonID<Bloonarius>();
-            bossElite3 = ModContent.BloonID<BloonariusFortified>();
+            bossesActive.Add(new List<string> { ModContent.BloonID<Bloonarius>(), ModContent.BloonID<BloonariusFortified>() });
         }
-        else if (coinToss == 1)
+        if ((bool)SpawnLych.GetValue())
         {
-            boss3 = ModContent.BloonID<Lych>();
-            bossElite3 = ModContent.BloonID<LychFortified>();
+            bossesActive.Add(new List<string> { ModContent.BloonID<Lych>(), ModContent.BloonID<LychFortified>() });
         }
-        else if (coinToss == 2)
+        if ((bool)SpawnDreadbloon.GetValue())
         {
-            boss3 = ModContent.BloonID<Dreadbloon>();
-            bossElite3 = ModContent.BloonID < DreadbloonFortified>();
+            bossesActive.Add(new List<string> { ModContent.BloonID<Dreadbloon>(), ModContent.BloonID<DreadbloonFortified>() });
         }
-        else if (coinToss == 3)
+        if ((bool)SpawnVortex.GetValue())
         {
-            boss3 = ModContent.BloonID<Vortex>();
-            bossElite3 = ModContent.BloonID<VortexFortified>();
+            bossesActive.Add(new List<string> { ModContent.BloonID<Vortex>(), ModContent.BloonID<VortexFortified>() });
         }
-        else
+        if ((bool)SpawnPhayze.GetValue())
         {
-            boss3 = ModContent.BloonID<Phayze>();
-            bossElite3 = ModContent.BloonID<PhayzeFortified>();
+            bossesActive.Add(new List<string> { ModContent.BloonID<Phayze>(), ModContent.BloonID<PhayzeFortified>() });
         }
+
+        int coinToss = coin.Next(0, bossesActive.Count);
+
+        boss3 = bossesActive[coinToss][0];
+        bossElite3 = bossesActive[coinToss][1];
+
         return temp switch
         {
             "Boss3" => boss3,
@@ -646,7 +678,6 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
     {
 
         string temp = bloon;
-        System.Random coin = new System.Random();
 
         // promotionTimes is how many times promotion/demotion happens, promote is whether to promote or demote,
         // 0 and 1 representing respectively
@@ -664,46 +695,57 @@ public class ImprovedMasteryModeMod : BloonsTD6Mod
             for (int i = 0; i < promotionTimes; i++)
             {
                 temp = demotionMap.GetValueOrDefault(temp, temp);
+                
             }
         }
-        
 
-
+        //most bloons aren't BADs, returning early saves boss computation
         if (temp != "Boss3" && temp != "BossElite3")
         {
             return temp;
         }
-        // uses coin to determine whether lych or bloonarius is sent out
+        
+        //Stops 50% of the boss pormotions to balance chaos mode 
+        bool t = coin.Next(0, 2) == 0;
+
+        if (t)
+        {
+            if (temp == "Boss3")
+                return "Bad";
+            if (temp == "BossElite3")
+                return "BadFortified";
+        }
         string boss3, bossElite3;
 
-        int coinToss = coin.Next(0, 5);
+        //Uses an array and random to manage randomly upgrading to different bosses and allowing the user to choose which boss can be upgraded to 
+        List<List<string>> bossesActive = new List<List<string>>();
 
+        if ((bool)SpawnBloonarius.GetValue())
+        {
+            bossesActive.Add(new List<string> { ModContent.BloonID<Bloonarius>(), ModContent.BloonID<BloonariusFortified>() });
+        }
+        if ((bool)SpawnLych.GetValue())
+        {
+            bossesActive.Add(new List<string> { ModContent.BloonID<Lych>(), ModContent.BloonID<LychFortified>() });
+        }
+        if ((bool)SpawnDreadbloon.GetValue())
+        {
+            bossesActive.Add(new List<string> { ModContent.BloonID<Dreadbloon>(), ModContent.BloonID<DreadbloonFortified>() });
+        }
+        if ((bool)SpawnVortex.GetValue())
+        {
+            bossesActive.Add(new List<string> { ModContent.BloonID<Vortex>(), ModContent.BloonID<VortexFortified>() });
+        }
+        if ((bool)SpawnPhayze.GetValue())
+        {
+            bossesActive.Add(new List<string> { ModContent.BloonID<Phayze>(), ModContent.BloonID<PhayzeFortified>() });
+        }
 
-        if (coinToss == 0)
-        {
-            boss3 = ModContent.BloonID<Bloonarius>();
-            bossElite3 = ModContent.BloonID<BloonariusFortified>();
-        }
-        else if (coinToss == 1)
-        {
-            boss3 = ModContent.BloonID<Lych>();
-            bossElite3 = ModContent.BloonID<LychFortified>();
-        }
-        else if (coinToss == 2)
-        {
-            boss3 = ModContent.BloonID<Dreadbloon>();
-            bossElite3 = ModContent.BloonID<DreadbloonFortified>();
-        }
-        else if (coinToss == 3)
-        {
-            boss3 = ModContent.BloonID<Vortex>();
-            bossElite3 = ModContent.BloonID<VortexFortified>();
-        }
-        else
-        {
-            boss3 = ModContent.BloonID<Phayze>();
-            bossElite3 = ModContent.BloonID<PhayzeFortified>();
-        }
+        int coinToss = coin.Next(0, bossesActive.Count);
+
+        boss3 = bossesActive[coinToss][0];
+        bossElite3 = bossesActive[coinToss][1];
+
         return temp switch
         {
             "Boss3" => boss3,

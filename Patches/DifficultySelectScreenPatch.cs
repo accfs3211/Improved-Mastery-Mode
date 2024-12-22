@@ -38,10 +38,11 @@ internal static class DifficultySelectScreenPatch {
             modHelperButton.initialInfo = info;
             info.Apply((ModHelperComponent) modHelperButton);
 
-            modHelperButton.AddText(new Info("Mode", 0, -175, 500, 100), "Mastery Mode Selector", 60f);
+            modHelperButton.AddText(new Info("Mode", 0, -175, 500, 100), "Mastery Mode", 60f);
             
             Image image = modHelperButton.AddComponent<Image>();
-
+           
+            
             image.type = Image.Type.Sliced;
             if (IsMasteryModeEnabled){
                 image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("MasteryModeButton"));
@@ -49,9 +50,12 @@ internal static class DifficultySelectScreenPatch {
                 //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(masteryModeBackgroundColor, 2, false, true, true);
             } else if (IsChaosModeEnabled){
                 image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("ChaosModeButton"));
+
                 //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
-            } else {
+            }
+            else {
                 image.SetSprite(VanillaSprites.WoodenRoundButton);
+                
                 //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
             }
 
@@ -64,14 +68,19 @@ internal static class DifficultySelectScreenPatch {
                     button.image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("ChaosModeButton"));
                     IsMasteryModeEnabled = !IsMasteryModeEnabled;
                     IsChaosModeEnabled = !IsChaosModeEnabled;
+
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(masteryModeBackgroundColor, 2, false, true, true);
-                } else if (IsChaosModeEnabled){
+                }
+                else if (IsChaosModeEnabled){
                     button.image.SetSprite(VanillaSprites.WoodenRoundButton);
                     IsChaosModeEnabled = !IsChaosModeEnabled;
+
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
-                } else {
+                }
+                else {
                     button.image.SetSprite(ModContent.GetSprite<ImprovedMasteryModeMod>("MasteryModeButton"));
                     IsMasteryModeEnabled = !IsMasteryModeEnabled;
+
                     //CommonBackgroundScreen.instance.mainMenuWorldBlurredImg.CrossFadeColor(defaultBackgroundColor, 2, false, true, true);
                 }
 
